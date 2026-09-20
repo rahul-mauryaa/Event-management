@@ -601,7 +601,8 @@ export function Hero() {
   const slide = slides[active]
 
   return (
-    <section className="relative h-[86vh] min-h-[620px] overflow-hidden bg-[#21170F] lg:h-[92vh]">
+    <section className="relative min-h-[720px] sm:min-h-[760px] lg:h-[92vh] lg:min-h-[680px] w-full overflow-hidden bg-[#21170F] flex flex-col justify-between">
+      {/* Background Slides */}
       <AnimatePresence mode="wait">
         <motion.div
           key={active}
@@ -609,7 +610,7 @@ export function Hero() {
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.9, ease: "easeOut" }}
-          className="absolute inset-0"
+          className="absolute inset-0 z-0"
         >
           <Image
             src={slide.image}
@@ -619,100 +620,118 @@ export function Hero() {
             sizes="100vw"
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#170E08]/90 via-[#170E08]/60 to-[#170E08]/30" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#170E08]/90 via-transparent to-black/40" />
+          {/* Enhanced readability gradients */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#170E08]/95 via-[#170E08]/75 to-[#170E08]/40" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#170E08] via-transparent to-black/50" />
         </motion.div>
       </AnimatePresence>
 
-      <div className="relative z-10 mx-auto flex h-full max-w-7xl flex-col justify-center px-5 pt-20 lg:px-8">
+      {/* Main Content Area */}
+      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center px-5 pt-28 pb-6 sm:pt-32 sm:pb-8 lg:px-8 lg:pt-36">
         <motion.div
           key={`copy-${active}`}
-          initial={{ opacity: 0, y: 22 }}
+          initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.5 }}
+          transition={{ delay: 0.15, duration: 0.5 }}
           className="max-w-3xl text-white"
         >
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 backdrop-blur-md border border-white/20">
-            <Sparkles size={14} className="text-[#E5C8A7]" />
-            <span className="text-xs font-bold uppercase tracking-[.25em] text-[#E5C8A7]">
+          {/* Category Tag */}
+          <div className="mb-3.5 inline-flex items-center gap-2 rounded-full bg-white/10 px-3.5 py-1 backdrop-blur-md border border-white/20 sm:px-4 sm:py-1.5">
+            <Sparkles size={13} className="text-[#E5C8A7]" />
+            <span className="text-[11px] sm:text-xs font-bold uppercase tracking-[.25em] text-[#E5C8A7]">
               {slide.tag}
             </span>
           </div>
-          <h1 className="font-serif text-4xl font-bold leading-[1.08] sm:text-6xl md:text-7xl">
+
+          {/* Heading */}
+          <h1 className="font-serif text-3xl font-bold leading-[1.12] sm:text-5xl md:text-6xl lg:text-7xl">
             {slide.title}
           </h1>
-          <p className="mt-6 max-w-2xl text-base sm:text-lg leading-relaxed text-white/85">
+
+          {/* Subtitle */}
+          <p className="mt-3.5 sm:mt-5 max-w-2xl text-xs sm:text-base md:text-lg leading-relaxed text-white/85">
             {slide.text}
           </p>
 
-          <div className="mt-8 flex flex-wrap gap-4">
+          {/* Action Buttons */}
+          <div className="mt-5 sm:mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 max-w-md sm:max-w-none">
             <Link
               href="/services"
-              className="rounded-full bg-gradient-to-r from-[#B08355] to-[#91653B] px-7 py-3.5 text-sm font-bold text-white shadow-lg transition hover:brightness-110 flex items-center gap-2"
+              className="rounded-full bg-gradient-to-r from-[#B08355] to-[#91653B] px-6 sm:px-7 py-3 sm:py-3.5 text-xs sm:text-sm font-bold text-white shadow-lg transition hover:brightness-110 flex items-center justify-center gap-2 text-center"
             >
               <span>Explore 18 Services</span>
-              <ArrowRight size={16} />
+              <ArrowRight size={15} />
             </Link>
             <Link
               href="/contact"
-              className="rounded-full border border-white/50 bg-white/10 px-7 py-3.5 text-sm font-bold text-white backdrop-blur-sm transition hover:bg-white hover:text-[#4A3421]"
+              className="rounded-full border border-white/40 bg-white/10 px-6 sm:px-7 py-3 sm:py-3.5 text-xs sm:text-sm font-bold text-white backdrop-blur-sm transition hover:bg-white hover:text-[#4A3421] text-center"
             >
               Get Custom Proposal
             </Link>
           </div>
 
-          {/* Quick Metrics Bar */}
-          <div className="mt-12 grid grid-cols-2 gap-4 border-t border-white/15 pt-6 sm:grid-cols-4 max-w-2xl">
-            <div>
-              <p className="font-serif text-2xl font-bold text-[#E5C8A7]">500+</p>
-              <p className="text-xs text-white/70">Events Orchestrated</p>
-            </div>
-            <div>
-              <p className="font-serif text-2xl font-bold text-[#E5C8A7]">12+ Yrs</p>
-              <p className="text-xs text-white/70">Industry Leadership</p>
-            </div>
-            <div>
-              <p className="font-serif text-2xl font-bold text-[#E5C8A7]">18 Services</p>
-              <p className="text-xs text-white/70">Tailored Disciplines</p>
-            </div>
-            <div>
-              <p className="font-serif text-2xl font-bold text-[#E5C8A7]">4.9 / 5.0</p>
-              <p className="text-xs text-white/70">Client Satisfaction</p>
+          {/* Quick Metrics Bar in dedicated glassmorphic card */}
+          <div className="mt-6 sm:mt-9 rounded-2xl bg-black/30 backdrop-blur-md border border-white/15 p-4 sm:p-5 max-w-2xl">
+            <div className="grid grid-cols-2 gap-3 sm:gap-4 sm:grid-cols-4">
+              <div>
+                <p className="font-serif text-lg sm:text-2xl font-bold text-[#E5C8A7]">500+</p>
+                <p className="text-[11px] sm:text-xs text-white/70 mt-0.5">Events Orchestrated</p>
+              </div>
+              <div>
+                <p className="font-serif text-lg sm:text-2xl font-bold text-[#E5C8A7]">12+ Yrs</p>
+                <p className="text-[11px] sm:text-xs text-white/70 mt-0.5">Industry Leadership</p>
+              </div>
+              <div>
+                <p className="font-serif text-lg sm:text-2xl font-bold text-[#E5C8A7]">18 Services</p>
+                <p className="text-[11px] sm:text-xs text-white/70 mt-0.5">Tailored Disciplines</p>
+              </div>
+              <div>
+                <p className="font-serif text-lg sm:text-2xl font-bold text-[#E5C8A7]">4.9 / 5.0</p>
+                <p className="text-[11px] sm:text-xs text-white/70 mt-0.5">Client Satisfaction</p>
+              </div>
             </div>
           </div>
         </motion.div>
       </div>
 
-      {/* Slide Navigation Dots */}
-      <div className="absolute bottom-8 left-5 z-10 flex items-center gap-3 lg:left-8">
-        {slides.map((_, i) => (
-          <button
-            key={i}
-            aria-label={`Go to slide ${i + 1}`}
-            onClick={() => setActive(i)}
-            className={`h-2 rounded-full transition-all duration-300 ${
-              i === active ? "w-10 bg-[#B08355]" : "w-4 bg-white/40 hover:bg-white/70"
-            }`}
-          />
-        ))}
-      </div>
+      {/* Dedicated Bottom Slider Controls Bar */}
+      <div className="relative z-20 mx-auto w-full max-w-7xl px-5 pb-6 sm:pb-8 lg:px-8">
+        <div className="flex items-center justify-between border-t border-white/10 pt-4 sm:pt-5">
+          {/* Slide Navigation Dots & Counter */}
+          <div className="flex items-center gap-2 sm:gap-3">
+            {slides.map((_, i) => (
+              <button
+                key={i}
+                aria-label={`Go to slide ${i + 1}`}
+                onClick={() => setActive(i)}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  i === active ? "w-8 sm:w-10 bg-[#B08355]" : "w-3 sm:w-4 bg-white/40 hover:bg-white/70"
+                }`}
+              />
+            ))}
+            <span className="ml-2 text-[11px] font-semibold text-white/60">
+              0{active + 1} / 0{slides.length}
+            </span>
+          </div>
 
-      {/* Slide Controls */}
-      <div className="absolute bottom-7 right-5 z-10 flex gap-2 lg:right-8">
-        <button
-          aria-label="Previous slide"
-          onClick={() => setActive((active + slides.length - 1) % slides.length)}
-          className="grid size-11 place-items-center rounded-full border border-white/30 bg-black/30 text-white backdrop-blur transition hover:bg-white hover:text-[#4A3421]"
-        >
-          <ChevronLeft size={20} />
-        </button>
-        <button
-          aria-label="Next slide"
-          onClick={() => setActive((active + 1) % slides.length)}
-          className="grid size-11 place-items-center rounded-full border border-white/30 bg-black/30 text-white backdrop-blur transition hover:bg-white hover:text-[#4A3421]"
-        >
-          <ChevronRight size={20} />
-        </button>
+          {/* Slide Controls Prev/Next */}
+          <div className="flex items-center gap-2">
+            <button
+              aria-label="Previous slide"
+              onClick={() => setActive((active + slides.length - 1) % slides.length)}
+              className="grid size-9 sm:size-10 place-items-center rounded-full border border-white/25 bg-black/40 text-white backdrop-blur transition hover:bg-[#B08355] hover:border-[#B08355]"
+            >
+              <ChevronLeft size={18} />
+            </button>
+            <button
+              aria-label="Next slide"
+              onClick={() => setActive((active + 1) % slides.length)}
+              className="grid size-9 sm:size-10 place-items-center rounded-full border border-white/25 bg-black/40 text-white backdrop-blur transition hover:bg-[#B08355] hover:border-[#B08355]"
+            >
+              <ChevronRight size={18} />
+            </button>
+          </div>
+        </div>
       </div>
     </section>
   )
@@ -1175,6 +1194,8 @@ export function Gallery({ preview = false }: { preview?: boolean }) {
 
 export function ContactForm({ prefilledService }: { prefilledService?: string }) {
   const [sent, setSent] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -1185,32 +1206,75 @@ export function ContactForm({ prefilledService }: { prefilledService?: string })
     message: "",
   })
 
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setLoading(true)
+    setError(null)
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      })
+
+      const data = await res.json()
+      if (!res.ok || !data.success) {
+        throw new Error(data.error || "Failed to submit proposal request.")
+      }
+
+      setSent(true)
+    } catch (err: any) {
+      setError(
+        err.message ||
+          "Could not send email. Please try again or reach out directly via WhatsApp/Call at +91-977-326-9662."
+      )
+    } finally {
+      setLoading(false)
+    }
+  }
+
   return sent ? (
-    <div className="rounded-3xl bg-[#F6EDE4] p-10 text-center border border-[#E5D8CB]">
-      <div className="mx-auto grid size-16 place-items-center rounded-full bg-[#B08355] text-white">
+    <div className="rounded-3xl bg-[#F6EDE4] p-8 sm:p-10 text-center border border-[#E5D8CB]">
+      <div className="mx-auto grid size-16 place-items-center rounded-full bg-[#B08355] text-white shadow-sm">
         <Sparkles size={28} />
       </div>
-      <h3 className="mt-5 font-serif text-3xl font-bold text-[#4A3421]">
+      <h3 className="mt-5 font-serif text-2xl sm:text-3xl font-bold text-[#4A3421]">
         Proposal Request Received!
       </h3>
-      <p className="mx-auto mt-3 max-w-md text-base leading-relaxed text-[#765F4C]">
-        Thank you, <span className="font-bold text-[#4A3421]">{formData.name}</span>. Our lead event producer will review your requirements and reach out within 24 hours with custom concepts.
+      <p className="mx-auto mt-3 max-w-md text-sm sm:text-base leading-relaxed text-[#765F4C]">
+        Thank you, <span className="font-bold text-[#4A3421]">{formData.name}</span>. Your event details have been delivered to our lead production team at <span className="font-semibold text-[#B08355]">featurebrights15@gmail.com</span>. We will review your vision and connect within 24 hours.
       </p>
       <button
-        onClick={() => setSent(false)}
-        className="mt-6 rounded-full border border-[#B08355] px-6 py-2 text-xs font-bold text-[#B08355]"
+        onClick={() => {
+          setSent(false)
+          setFormData({
+            name: "",
+            email: "",
+            phone: "",
+            service: prefilledService || "",
+            date: "",
+            guests: "100–300",
+            message: "",
+          })
+        }}
+        className="mt-6 rounded-full border border-[#B08355] bg-white px-7 py-2.5 text-xs font-bold text-[#B08355] hover:bg-[#B08355] hover:text-white transition shadow-2xs"
       >
         Submit Another Enquiry
       </button>
     </div>
   ) : (
-    <form
-      onSubmit={(e) => {
-        e.preventDefault()
-        setSent(true)
-      }}
-      className="grid gap-5 md:grid-cols-2"
-    >
+    <form onSubmit={handleSubmit} className="grid gap-5 md:grid-cols-2">
+      {error && (
+        <div className="md:col-span-2 rounded-2xl bg-amber-50 border border-amber-200 p-4 text-xs sm:text-sm text-amber-900 flex items-start gap-3">
+          <span className="text-base leading-none">⚠️</span>
+          <div className="flex-1">
+            <p className="font-bold">Transmission Notice</p>
+            <p className="mt-0.5">{error}</p>
+          </div>
+        </div>
+      )}
+
       <div>
         <label className="mb-1.5 block text-xs font-bold uppercase tracking-wider text-[#4A3421]">
           Your Full Name *
@@ -1336,13 +1400,26 @@ export function ContactForm({ prefilledService }: { prefilledService?: string })
 
       <div className="md:col-span-2 flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
         <p className="text-xs text-[#765F4C]">
-          🔒 We treat your information with confidentiality under non-disclosure terms.
+          🔒 Direct encrypted transmission to Feature Brights executive desk.
         </p>
         <button
           type="submit"
-          className="w-full sm:w-auto rounded-full bg-gradient-to-r from-[#B08355] to-[#8C6239] px-8 py-3.5 text-sm font-bold text-white shadow-md hover:brightness-105 transition"
+          disabled={loading}
+          className={`w-full sm:w-auto rounded-full bg-gradient-to-r from-[#B08355] to-[#8C6239] px-8 py-3.5 text-sm font-bold text-white shadow-md hover:brightness-105 transition flex items-center justify-center gap-2 ${
+            loading ? "opacity-70 cursor-not-allowed" : ""
+          }`}
         >
-          Request Proposal & Blueprint <ArrowRight className="ml-2 inline" size={16} />
+          {loading ? (
+            <>
+              <span className="inline-block size-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
+              <span>Sending Details via SMTP...</span>
+            </>
+          ) : (
+            <>
+              <span>Request Proposal & Blueprint</span>
+              <ArrowRight size={16} />
+            </>
+          )}
         </button>
       </div>
     </form>
@@ -1609,3 +1686,91 @@ export function Footer() {
     </footer>
   )
 }
+
+/* -------------------------------------------------------------------------- */
+/*                              FAQ Accordion                                 */
+/* -------------------------------------------------------------------------- */
+
+export interface FaqItemType {
+  question: string
+  answer: string
+}
+
+export function FaqAccordion({ items }: { items: FaqItemType[] }) {
+  // First item active by default (matching Elementor active-block)
+  const [openIndex, setOpenIndex] = useState<number | null>(0)
+
+  const toggle = (index: number) => {
+    setOpenIndex((prev) => (prev === index ? null : index))
+  }
+
+  return (
+    <div className="space-y-3.5">
+      {items.map((item, idx) => {
+        const isOpen = openIndex === idx
+        return (
+          <div
+            key={idx}
+            className={`overflow-hidden rounded-2xl border transition-all duration-200 ${
+              isOpen
+                ? "border-[#B08355] bg-[#FDF8F3] shadow-xs"
+                : "border-[#E5D8CB] bg-white hover:border-[#B08355]/60 hover:bg-[#FDF8F3]/50"
+            }`}
+          >
+            <button
+              type="button"
+              onClick={() => toggle(idx)}
+              className="flex w-full items-center justify-between gap-4 px-5 py-4 sm:px-6 sm:py-5 text-left transition-colors"
+              aria-expanded={isOpen}
+            >
+              <div className="flex items-center gap-3.5 sm:gap-4 pr-2">
+                <span
+                  className={`grid size-7 sm:size-8 shrink-0 place-items-center rounded-lg text-xs font-bold transition-colors ${
+                    isOpen
+                      ? "bg-[#B08355] text-white"
+                      : "bg-[#F6EDE4] text-[#B08355]"
+                  }`}
+                >
+                  {String(idx + 1).padStart(2, "0")}
+                </span>
+                <span className="font-serif text-base sm:text-lg font-bold text-[#4A3421] leading-snug">
+                  {item.question}
+                </span>
+              </div>
+              <motion.div
+                animate={{ rotate: isOpen ? 180 : 0 }}
+                transition={{ duration: 0.2, ease: "easeInOut" }}
+                className={`grid size-8 shrink-0 place-items-center rounded-full transition-colors ${
+                  isOpen
+                    ? "bg-[#B08355] text-white"
+                    : "bg-[#F6EDE4] text-[#B08355] hover:bg-[#E5D8CB]"
+                }`}
+              >
+                <ChevronDown size={18} />
+              </motion.div>
+            </button>
+
+            <AnimatePresence initial={false}>
+              {isOpen && (
+                <motion.div
+                  key="answer"
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.25, ease: "easeInOut" }}
+                >
+                  <div className="border-t border-[#E5D8CB]/70 px-5 pb-5 pt-3.5 sm:px-6 sm:pb-6 text-sm sm:text-base leading-relaxed text-[#765F4C]">
+                    <div className="sm:pl-12 pl-10">
+                      <p>{item.answer}</p>
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        )
+      })}
+    </div>
+  )
+}
+

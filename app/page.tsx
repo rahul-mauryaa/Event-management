@@ -15,6 +15,7 @@ import {
   Users,
 } from "lucide-react"
 import {
+  FaqAccordion,
   Footer,
   Gallery,
   Header,
@@ -24,6 +25,8 @@ import {
   ServiceGrid,
   Testimonials,
 } from "@/components/site"
+import { GoogleReviewsSection } from "@/components/google-reviews-section"
+import { homeFaqs } from "@/data/faqs"
 import { services } from "@/data/services"
 
 export const metadata = {
@@ -31,25 +34,6 @@ export const metadata = {
   description:
     "Award-winning event production studio crafting unforgettable weddings, enterprise product launches, conferences, and arena concerts with bespoke perfection.",
 }
-
-const faqs = [
-  {
-    q: "How early in advance should we engage Feature Brights for our event?",
-    a: "For weddings and large-scale corporate conferences or concerts, we recommend 4 to 8 months in advance to secure prime venues and top artists. However, for roadshows, promotional activations, or intimate celebrations, our rapid-response production teams can deliver turnkey excellence within 3 to 6 weeks.",
-  },
-  {
-    q: "Do you provide custom 3D design renders before event execution?",
-    a: "Yes! Every single client receives photorealistic 3D spatial renders and virtual walkthroughs of stages, mandaps, banquet tables, and lighting plots. You get to approve every visual element before physical fabrication begins.",
-  },
-  {
-    q: "Can you manage events outside our home city or international destinations?",
-    a: "Absolutely. We regularly produce multi-city roadshows across India, UAE, and Southeast Asia, as well as destination weddings in Udaipur, Goa, Bali, and Europe. We provide a full traveling production desk combined with certified local vendors.",
-  },
-  {
-    q: "How do you handle technical contingencies and safety on-site?",
-    a: "We deploy redundant audio-visual consoles, backup power generators, certified structural engineers for hanging trusses, and trained medical and fire-safety personnel on-site for all mid to large gatherings.",
-  },
-]
 
 export default function Home() {
   return (
@@ -260,42 +244,19 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Client Testimonials */}
-        <section className="bg-[#FDF8F3] px-5 py-24 lg:px-8">
-          <div className="mx-auto max-w-7xl">
-            <SectionHeading
-              eyebrow="Client Endorsements"
-              title="Kind Words from Hosts & Partners"
-              text="Hear from newlyweds, global marketing vice presidents, and enterprise founders who trusted us with their defining moments."
-            />
-            <div className="mt-14">
-              <Testimonials />
-            </div>
-          </div>
-        </section>
+        {/* Real Google Reviews & Place Showcase */}
+        <GoogleReviewsSection />
 
         {/* FAQ Section */}
         <section className="bg-white px-5 py-24 lg:px-8 border-t border-[#E5D8CB]">
           <div className="mx-auto max-w-4xl">
             <SectionHeading
-              eyebrow="Got Questions?"
+              eyebrow="Feature Brights"
               title="Frequently Asked Questions"
-              text="Everything you need to know about partnering with Feature Brights for your upcoming gathering."
+              text="Everything you need to know about our event management services, budgets, and planning in Surat and beyond."
             />
-            <div className="mt-12 space-y-4">
-              {faqs.map((faq, i) => (
-                <div
-                  key={i}
-                  className="rounded-2xl border border-[#E5D8CB] bg-[#FDF8F3] p-6 shadow-2xs"
-                >
-                  <h3 className="font-serif text-lg font-bold text-[#4A3421]">
-                    {faq.q}
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-[#765F4C]">
-                    {faq.a}
-                  </p>
-                </div>
-              ))}
+            <div className="mt-12">
+              <FaqAccordion items={homeFaqs} />
             </div>
 
             <div className="mt-10 rounded-2xl bg-[#F6EDE4] p-6 text-center border border-[#E5D8CB]">
