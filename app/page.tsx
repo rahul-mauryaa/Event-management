@@ -20,11 +20,13 @@ import {
   Gallery,
   Header,
   Hero,
+  HighlightsBar,
   InteractiveEventEstimator,
   SectionHeading,
   ServiceGrid,
   Testimonials,
 } from "@/components/site"
+import { BrandVideoSection } from "@/components/brand-video-section"
 import { GoogleReviewsSection } from "@/components/google-reviews-section"
 import { homeFaqs } from "@/data/faqs"
 import { services } from "@/data/services"
@@ -43,27 +45,11 @@ export default function Home() {
         {/* Cinematic Hero */}
         <Hero />
 
-        {/* Introduction & Highlights Bar */}
-        <section className="border-b border-[#E5D8CB] bg-[#F6EDE4] px-5 py-6 lg:px-8">
-          <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-6 text-xs sm:text-sm font-semibold text-[#4A3421]">
-            <div className="flex items-center gap-2">
-              <Award className="text-[#B08355]" size={18} />
-              <span>Certified Luxury Event Producers</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Sparkles className="text-[#B08355]" size={18} />
-              <span>18 Tailored Service Disciplines</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Clock className="text-[#B08355]" size={18} />
-              <span>99.8% On-Time Cue Precision</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <ShieldCheck className="text-[#B08355]" size={18} />
-              <span>100% Guaranteed Confidentiality</span>
-            </div>
-          </div>
-        </section>
+        {/* Slow Continuous Highlights Ribbon */}
+        <HighlightsBar />
+
+        {/* Services by Feature Brights - Event Management with Video Showcase */}
+        <BrandVideoSection />
 
         {/* Interactive Services Section */}
         <section id="services" className="bg-[#FDF8F3] px-5 py-24 lg:px-8">

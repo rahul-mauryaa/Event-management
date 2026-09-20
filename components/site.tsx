@@ -6,6 +6,7 @@ import { useEffect, useState } from "react"
 import { AnimatePresence, motion } from "framer-motion"
 import {
   ArrowRight,
+  Award,
   Briefcase,
   Calendar,
   CalendarDays,
@@ -22,6 +23,7 @@ import {
   Music2,
   Phone,
   Search,
+  ShieldCheck,
   Sparkles,
   Star,
   Users,
@@ -594,7 +596,8 @@ export function Hero() {
   const [active, setActive] = useState(0)
 
   useEffect(() => {
-    const id = setInterval(() => setActive((x) => (x + 1) % slides.length), 6000)
+    // Slower, relaxed auto-play interval for big display and mobile readability
+    const id = setInterval(() => setActive((x) => (x + 1) % slides.length), 9500)
     return () => clearInterval(id)
   }, [])
 
@@ -609,7 +612,7 @@ export function Hero() {
           initial={{ opacity: 0, scale: 1.05 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.9, ease: "easeOut" }}
+          transition={{ duration: 1.2, ease: "easeInOut" }}
           className="absolute inset-0 z-0"
         >
           <Image
@@ -731,6 +734,101 @@ export function Hero() {
               <ChevronRight size={18} />
             </button>
           </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+/* -------------------------------------------------------------------------- */
+/*                 Slow Continuous Highlights Ribbon / Ticker                 */
+/* -------------------------------------------------------------------------- */
+
+function HighlightWhatsAppIcon({ className = "size-4" }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm0 18.15c-1.49 0-2.94-.4-4.22-1.15l-.3-.18-3.13.82.84-3.05-.2-.31a8.134 8.134 0 0 1-1.25-4.38c0-4.5 3.66-8.15 8.16-8.15 2.18 0 4.23.85 5.77 2.39a8.127 8.127 0 0 1 2.39 5.76c0 4.5-3.66 8.15-8.16 8.15zm4.47-6.1c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.79.97-.14.17-.29.19-.53.07-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43s-.56-1.34-.76-1.84c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.84-.86 2.05 0 1.21.88 2.38 1 2.55.12.17 1.74 2.65 4.21 3.72.59.25 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.11-.23-.18-.48-.3z" />
+    </svg>
+  )
+}
+
+export function HighlightsBar() {
+  const items = [
+    { icon: Award, text: "Certified Luxury Event Producers" },
+    { icon: Sparkles, text: "18 Tailored Service Disciplines" },
+    {
+      icon: HighlightWhatsAppIcon,
+      text: "WhatsApp Us: +91 97732 69662",
+      isWhatsApp: true,
+      href: "https://wa.me/919773269662?text=Hello%20Feature%20Brights!%20I%20would%20like%20to%20inquire%20about%20event%20planning.",
+    },
+    { icon: Star, text: "5.0 ★ Google Top-Rated in Surat" },
+    { icon: Clock, text: "99.8% On-Time Cue Precision" },
+    { icon: Heart, text: "500+ Milestone Celebrations" },
+    { icon: ShieldCheck, text: "100% Guaranteed Confidentiality" },
+    { icon: MapPin, text: "Ratna Madhav, Vesu, Surat Studio" },
+    { icon: Music2, text: "Turnkey Sound, Light & 4K Production" },
+  ]
+
+  // Quadruple repetition guarantees unbroken, seamless flow across ultra-wide and 4K displays
+  const duplicated = [...items, ...items, ...items, ...items]
+
+  return (
+    <section className="relative overflow-hidden border-b border-[#E5D8CB] bg-[#F6EDE4] py-4 sm:py-5 lg:py-5.5 shadow-[inset_0_1px_3px_rgba(74,52,33,0.04)]">
+      {/* Edge gradient masks tailored for big displays */}
+      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-20 sm:w-36 lg:w-56 xl:w-72 bg-gradient-to-r from-[#F6EDE4] via-[#F6EDE4]/90 to-transparent" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-20 sm:w-36 lg:w-56 xl:w-72 bg-gradient-to-l from-[#F6EDE4] via-[#F6EDE4]/90 to-transparent" />
+
+      <div className="flex w-full overflow-hidden select-none">
+        <div className="animate-slow-marquee flex items-center gap-8 sm:gap-12 lg:gap-16 pr-8 sm:pr-12 lg:pr-16">
+          {duplicated.map((item, idx) => {
+            const Icon = item.icon
+            const content = (
+              <div
+                className={`flex items-center gap-2.5 sm:gap-3 text-xs sm:text-sm lg:text-[15px] font-semibold tracking-wide whitespace-nowrap transition-colors ${
+                  item.isWhatsApp
+                    ? "text-[#1B703A] hover:text-[#128C7E]"
+                    : "text-[#4A3421] hover:text-[#B08355]"
+                }`}
+              >
+                <span
+                  className={`grid size-7 sm:size-8 lg:size-9 place-items-center rounded-xl shadow-xs transition-transform hover:scale-105 ${
+                    item.isWhatsApp
+                      ? "bg-[#25D366]/20 text-[#128C7E]"
+                      : "bg-[#E5D8CB]/80 text-[#B08355]"
+                  }`}
+                >
+                  <Icon className="size-3.5 sm:size-4 lg:size-4.5" />
+                </span>
+                <span className={item.isWhatsApp ? "font-bold underline decoration-[#25D366]/40 underline-offset-4" : ""}>
+                  {item.text}
+                </span>
+                <span className="ml-5 sm:ml-8 lg:ml-10 text-[11px] lg:text-xs text-[#B08355]/40 font-serif">✦</span>
+              </div>
+            )
+
+            if (item.href) {
+              return (
+                <a
+                  key={idx}
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={item.text}
+                  className="cursor-pointer"
+                >
+                  {content}
+                </a>
+              )
+            }
+
+            return <div key={idx}>{content}</div>
+          })}
         </div>
       </div>
     </section>

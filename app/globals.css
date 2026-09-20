@@ -9,3 +9,43 @@ html { scroll-behavior: smooth; }
 body { margin: 0; background: var(--background); color: var(--foreground); font-family: var(--font-inter), sans-serif; }
 .font-serif, h1, h2, h3 { font-family: var(--font-poppins), sans-serif; }
 button, a { transition: all .2s ease; }
+
+@keyframes slowMarquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-slow-marquee {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: slowMarquee 130s linear infinite;
+}
+
+.animate-slow-marquee:hover {
+  animation-play-state: paused;
+}
+
+@keyframes slowPing {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.65;
+  }
+  55% {
+    transform: scale(1.35);
+    opacity: 0.18;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+.animate-slow-ping {
+  animation: slowPing 3.2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
