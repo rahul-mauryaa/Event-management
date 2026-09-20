@@ -27,6 +27,7 @@ import {
   Testimonials,
 } from "@/components/site"
 import { BrandVideoSection } from "@/components/brand-video-section"
+import { InstagramShowcase } from "@/components/instagram-showcase"
 import { GoogleReviewsSection } from "@/components/google-reviews-section"
 import { homeFaqs } from "@/data/faqs"
 import { services } from "@/data/services"
@@ -229,6 +230,9 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* Official Instagram Video Reels & Photos Feed */}
+        <InstagramShowcase />
 
         {/* Real Google Reviews & Place Showcase */}
         <GoogleReviewsSection />

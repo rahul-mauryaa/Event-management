@@ -1,11 +1,12 @@
 import Link from "next/link"
 import { ArrowRight, Sparkles } from "lucide-react"
 import { Footer, Gallery, Header, SectionHeading } from "@/components/site"
+import { InstagramShowcase } from "@/components/instagram-showcase"
 
 export const metadata = {
-  title: "Event Gallery & Visual Portfolio | Elegance Events",
+  title: "Event Gallery & Visual Portfolio | Feature Brights",
   description:
-    "Explore our visual archive of luxury wedding celebrations, corporate keynote reveals, and live concert spectacles orchestrated across India and worldwide.",
+    "Explore our visual archive of luxury wedding celebrations, corporate keynote reveals, and live concert spectacles orchestrated across Surat and Gujarat.",
 }
 
 export default function GalleryPage() {
@@ -24,6 +25,11 @@ export default function GalleryPage() {
           {/* Interactive Lightbox Gallery */}
           <div className="mt-14">
             <Gallery />
+          </div>
+
+          {/* Official Instagram Reels and Photos Showcase */}
+          <div className="mt-20">
+            <InstagramShowcase />
           </div>
 
           {/* Bottom Banner */}
