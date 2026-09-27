@@ -53,7 +53,8 @@ export function BrandVideoSection() {
   }
 
   const cities = [
-    { name: "Surat", tag: "Headquarters" },
+    { name: "Bengaluru", tag: "Main Branch / HQ" },
+    { name: "Surat", tag: "Regional Studio HQ" },
     { name: "Vadodara", tag: "Full Production" },
     { name: "Ahmedabad", tag: "Statewide Hub" },
     { name: "Rajkot & Saurashtra", tag: "Destination & Venues" },
@@ -90,7 +91,7 @@ export function BrandVideoSection() {
           </h2>
 
           <p className="mt-5 text-base sm:text-lg leading-relaxed text-[#765F4C]">
-            Feature Brights Event Management is a premier event management company serving the entire state of Gujarat. Based in Surat, we offer comprehensive services including venue booking, personal event planning, corporate conferences, private parties, trade exhibitions, virtual event management, destination weddings, and stage shows. We proudly cover Surat, Vadodara, Ahmedabad, and all other major cities across Gujarat.
+            Feature Brights Event Management is a premier wedding and event production company. With our Main Branch established in Bengaluru (Basavanagar, Marathahalli) and regional studio in Surat, we offer comprehensive services including venue booking, authentic South Indian wedding rituals, corporate conferences, private parties, trade exhibitions, virtual event management, destination weddings, and stage shows across Karnataka, Gujarat, and nationwide.
           </p>
 
           {/* City Coverage Badges */}
@@ -177,7 +178,7 @@ export function BrandVideoSection() {
                       Full HD Production
                     </span>
                     <span className="rounded-full bg-white/15 px-3 py-1 backdrop-blur-sm">
-                      Surat • Vadodara • Ahmedabad
+                      Bengaluru (Main Branch) • Surat • Vadodara
                     </span>
                   </div>
                 </div>

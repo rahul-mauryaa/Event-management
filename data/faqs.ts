@@ -5,6 +5,11 @@ export type FAQItem = {
 
 export const homeFaqs: FAQItem[] = [
   {
+    question: "Where are Feature Brights branches located?",
+    answer:
+      "Our Main Branch is located in Bengaluru at Building no 701, 1st Cross Rd, Basavanagar, Marathahalli, Bengaluru, Karnataka 560037. We also operate our full-service studio branch in Surat at Block no. C, Ratna Madhav, Shop no. 3 near Diamond Jalaram Temple, Vesu, Surat, Gujarat 395007. We welcome clients for in-person consultations at both branches and orchestrate weddings and luxury events across Karnataka, Gujarat, and pan-India.",
+  },
+  {
     question: "How much does event management cost in Surat?",
     answer:
       "The cost of event management services in Surat varies depending on the type of event. On average, it ranges from ₹3 lakhs to ₹15 lakhs. At Feature Brights Events, we tailor each event to your needs, ensuring a unique and memorable experience that fits your budget. Contact us for a customized quote.",

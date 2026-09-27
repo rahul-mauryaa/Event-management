@@ -6,6 +6,7 @@ import Link from "next/link"
 import {
   ExternalLink,
   Heart,
+  Layers,
   MessageCircle,
   Play,
   Share2,
@@ -26,7 +27,7 @@ function InstagramIcon({ size = 16, className = "" }: { size?: number; className
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
-      className={className}
+      className={`shrink-0 ${className}`}
       xmlns="http://www.w3.org/2000/svg"
     >
       <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
@@ -199,14 +200,16 @@ export function InstagramShowcase() {
           <div className="flex items-start sm:items-center gap-4">
             {/* Instagram Gradient Ring Logo */}
             <div className="relative p-1 rounded-full bg-gradient-to-tr from-[#F58529] via-[#DD2A7B] to-[#8134AF] shadow-md shrink-0">
-              <div className="size-16 sm:size-20 rounded-full bg-white p-1 overflow-hidden">
-                <Image
-                  src="/logo.png"
-                  alt="Feature Brights Logo"
-                  width={80}
-                  height={80}
-                  className="size-full object-contain"
-                />
+              <div className="size-16 sm:size-20 rounded-full bg-white p-1.5 overflow-hidden flex items-center justify-center">
+                <div className="relative size-full">
+                  <Image
+                    src="/logo.png"
+                    alt="Feature Brights Logo"
+                    fill
+                    sizes="80px"
+                    className="object-contain"
+                  />
+                </div>
               </div>
             </div>
 
@@ -254,43 +257,73 @@ export function InstagramShowcase() {
         </div>
 
         {/* Tab Filter Navigation */}
-        <div className="mt-10 flex flex-wrap items-center justify-between gap-4">
-          <div className="flex items-center gap-2 rounded-2xl bg-[#F6EDE4] p-1.5 border border-[#E5D8CB]">
+        <div className="mt-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div className="w-full sm:w-auto grid grid-cols-3 sm:flex sm:items-center gap-1 sm:gap-2 rounded-2xl bg-[#F6EDE4] p-1.5 border border-[#E5D8CB]">
             <button
+              type="button"
               onClick={() => setActiveTab("all")}
-              className={`rounded-xl px-4 py-2 text-xs sm:text-sm font-bold transition ${
+              className={`flex items-center justify-center gap-1.5 sm:gap-2 rounded-xl py-2.5 px-2 sm:px-4 text-xs sm:text-sm font-bold transition-all cursor-pointer whitespace-nowrap ${
                 activeTab === "all"
                   ? "bg-[#4A3421] text-white shadow-sm"
-                  : "text-[#765F4C] hover:text-[#4A3421]"
+                  : "text-[#765F4C] hover:text-[#4A3421] hover:bg-white/60"
               }`}
             >
-              All Media ({instagramVideos.length + instagramPhotos.length})
+              <Layers size={15} className={`shrink-0 ${activeTab === "all" ? "text-white" : "text-[#B08355]"}`} />
+              <span className="hidden sm:inline">All Media</span>
+              <span className="sm:hidden">All</span>
+              <span
+                className={`rounded-full px-1.5 py-0.2 text-[10px] sm:text-xs font-semibold ${
+                  activeTab === "all" ? "bg-white/20 text-white" : "bg-black/5 text-[#765F4C]"
+                }`}
+              >
+                {instagramVideos.length + instagramPhotos.length}
+              </span>
             </button>
+
             <button
+              type="button"
               onClick={() => setActiveTab("videos")}
-              className={`flex items-center gap-1.5 rounded-xl px-4 py-2 text-xs sm:text-sm font-bold transition ${
+              className={`flex items-center justify-center gap-1.5 sm:gap-2 rounded-xl py-2.5 px-2 sm:px-4 text-xs sm:text-sm font-bold transition-all cursor-pointer whitespace-nowrap ${
                 activeTab === "videos"
                   ? "bg-[#4A3421] text-white shadow-sm"
-                  : "text-[#765F4C] hover:text-[#4A3421]"
+                  : "text-[#765F4C] hover:text-[#4A3421] hover:bg-white/60"
               }`}
             >
-              <Video size={15} />
-              <span>Reels & Videos ({instagramVideos.length})</span>
+              <Video size={15} className={`shrink-0 ${activeTab === "videos" ? "text-white" : "text-[#B08355]"}`} />
+              <span className="hidden sm:inline">Reels & Videos</span>
+              <span className="sm:hidden">Reels</span>
+              <span
+                className={`rounded-full px-1.5 py-0.2 text-[10px] sm:text-xs font-semibold ${
+                  activeTab === "videos" ? "bg-white/20 text-white" : "bg-black/5 text-[#765F4C]"
+                }`}
+              >
+                {instagramVideos.length}
+              </span>
             </button>
+
             <button
+              type="button"
               onClick={() => setActiveTab("photos")}
-              className={`flex items-center gap-1.5 rounded-xl px-4 py-2 text-xs sm:text-sm font-bold transition ${
+              className={`flex items-center justify-center gap-1.5 sm:gap-2 rounded-xl py-2.5 px-2 sm:px-4 text-xs sm:text-sm font-bold transition-all cursor-pointer whitespace-nowrap ${
                 activeTab === "photos"
                   ? "bg-[#4A3421] text-white shadow-sm"
-                  : "text-[#765F4C] hover:text-[#4A3421]"
+                  : "text-[#765F4C] hover:text-[#4A3421] hover:bg-white/60"
               }`}
             >
-              <InstagramIcon size={15} />
-              <span>Instagram Photos ({instagramPhotos.length})</span>
+              <InstagramIcon size={15} className={`shrink-0 ${activeTab === "photos" ? "text-white" : "text-[#B08355]"}`} />
+              <span className="hidden sm:inline">Instagram Photos</span>
+              <span className="sm:hidden">Photos</span>
+              <span
+                className={`rounded-full px-1.5 py-0.2 text-[10px] sm:text-xs font-semibold ${
+                  activeTab === "photos" ? "bg-white/20 text-white" : "bg-black/5 text-[#765F4C]"
+                }`}
+              >
+                {instagramPhotos.length}
+              </span>
             </button>
           </div>
 
-          <p className="text-xs font-semibold text-[#765F4C]">
+          <p className="text-xs font-semibold text-[#765F4C] text-center sm:text-right">
             Click any video or photo to preview
           </p>
         </div>

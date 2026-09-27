@@ -9,10 +9,14 @@ const poppins = Poppins({ subsets: ["latin"], weight: ["500", "600", "700"], var
 export const metadata: Metadata = {
   title: "Feature Brights | South Wedding Planner & Event Management Studio",
   description:
-    "Feature Brights — Premier luxury wedding planners and event management studio in Vesu, Surat, Gujarat. Specialized in royal weddings, grand receptions, and corporate productions.",
+    "Feature Brights — Premier luxury wedding planners and event management studio. Main Branch in Basavanagar, Marathahalli, Bengaluru and studio in Vesu, Surat. Specialized in authentic South Indian weddings, royal receptions, and corporate productions.",
   icons: {
-    icon: "/logo.png",
-    apple: "/logo.png",
+    icon: [
+      { url: "/logo.png" },
+      { url: "/icon-light-32x32.png", sizes: "32x32", type: "image/png" },
+    ],
+    apple: "/apple-icon.png",
+    shortcut: "/logo.png",
   },
 }
 

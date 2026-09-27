@@ -114,14 +114,14 @@ export function Header({ solid = false }: { solid?: boolean }) {
           className="group flex min-w-0 items-center gap-3"
           onClick={() => setOpen(false)}
         >
-          <div className="relative size-11 sm:size-12 shrink-0 overflow-hidden rounded-full bg-white/95 p-1 shadow-md border border-[#E5D8CB] transition-transform duration-300 group-hover:scale-105">
+          <div className="relative size-12 sm:size-13 shrink-0 overflow-hidden rounded-2xl bg-white p-1 shadow-sm border border-[#E5D8CB] transition-all duration-300 group-hover:scale-105 group-hover:shadow-md">
             <Image
               src="/logo.png"
               alt="Feature Brights Logo"
               fill
               priority
-              sizes="48px"
-              className="object-contain p-0.5"
+              sizes="52px"
+              className="object-contain"
             />
           </div>
           <div className="flex flex-col">
@@ -362,6 +362,30 @@ export function Header({ solid = false }: { solid?: boolean }) {
             className="overflow-y-auto border-t border-[#E5D8CB] bg-[#FDF8F3] px-5 py-6 lg:hidden"
           >
             <nav aria-label="Mobile navigation" className="mx-auto flex max-w-lg flex-col gap-2 pb-16">
+              {/* Brand Header Card with Official Logo */}
+              <div className="mb-2 flex items-center gap-3.5 rounded-2xl bg-white p-3.5 border border-[#E5D8CB] shadow-xs">
+                <div className="relative size-12 shrink-0 overflow-hidden rounded-xl bg-white p-1 border border-[#E5D8CB]/80">
+                  <Image
+                    src="/logo.png"
+                    alt="Feature Brights Logo"
+                    fill
+                    sizes="48px"
+                    className="object-contain"
+                  />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <span className="font-serif text-base font-bold text-[#4A3421] block leading-snug">
+                    Feature Brights
+                  </span>
+                  <span className="text-[10px] font-semibold uppercase tracking-wider text-[#B08355] block">
+                    South Wedding & Event Planner
+                  </span>
+                </div>
+                <span className="shrink-0 rounded-full bg-[#F6EDE4] px-2.5 py-1 text-[10px] font-bold text-[#B08355] border border-[#E5D8CB]/80">
+                  ⭐ Main: BLR
+                </span>
+              </div>
+
               {/* Primary Links */}
               <Link
                 href="/"
@@ -759,6 +783,7 @@ function HighlightWhatsAppIcon({ className = "size-4" }: { className?: string })
 
 export function HighlightsBar() {
   const items = [
+    { icon: Star, text: "⭐ Main Branch: Basavanagar, Marathahalli, Bengaluru" },
     { icon: Award, text: "Certified Luxury Event Producers" },
     { icon: Sparkles, text: "18 Tailored Service Disciplines" },
     {
@@ -767,11 +792,11 @@ export function HighlightsBar() {
       isWhatsApp: true,
       href: "https://wa.me/919773269662?text=Hello%20Feature%20Brights!%20I%20would%20like%20to%20inquire%20about%20event%20planning.",
     },
-    { icon: Star, text: "5.0 ★ Google Top-Rated in Surat" },
+    { icon: Star, text: "5.0 ★ Google Top-Rated Wedding Planners" },
     { icon: Clock, text: "99.8% On-Time Cue Precision" },
     { icon: Heart, text: "500+ Milestone Celebrations" },
     { icon: ShieldCheck, text: "100% Guaranteed Confidentiality" },
-    { icon: MapPin, text: "Ratna Madhav, Vesu, Surat Studio" },
+    { icon: MapPin, text: "Surat Studio: Ratna Madhav, Vesu" },
     { icon: Music2, text: "Turnkey Sound, Light & 4K Production" },
   ]
 
@@ -1626,14 +1651,14 @@ export function Footer() {
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-5">
           {/* Brand Col */}
           <div className="lg:col-span-2">
-            <div className="mb-5 flex items-center gap-3">
-              <div className="relative size-12 shrink-0 overflow-hidden rounded-full bg-white p-1 shadow-md border border-[#E5D8CB]">
+            <div className="mb-5 flex items-center gap-3.5">
+              <div className="relative size-14 shrink-0 overflow-hidden rounded-2xl bg-white p-1.5 shadow-md border border-[#E5D8CB]">
                 <Image
                   src="/logo.png"
                   alt="Feature Brights Logo"
                   fill
-                  sizes="48px"
-                  className="object-contain p-0.5"
+                  sizes="56px"
+                  className="object-contain"
                 />
               </div>
               <div>
@@ -1644,25 +1669,56 @@ export function Footer() {
               </div>
             </div>
             <p className="max-w-sm text-sm leading-relaxed text-white/70">
-              An elite wedding management and experience design agency based in Surat, Gujarat. We transform weddings, corporate summits, and concert productions into unforgettable memories.
+              An elite wedding management and experience design agency. With our Main Branch established in Bengaluru and regional studio in Surat, we transform South Indian weddings, royal receptions, and concert productions into unforgettable memories.
             </p>
 
-            <div className="mt-6 flex flex-col gap-2.5 text-xs text-white/80">
-              <div className="flex items-start gap-2">
-                <MapPin size={15} className="text-[#E5C8A7] shrink-0 mt-0.5" />
-                <div>
-                  <span>block no. C, Ratna Madhav, Shop no. 3 near diamond jalaram temple, vesu, Surat, Gujarat 395007</span>
-                  <a
-                    href="https://www.google.com/maps/place/Feature+Brights+south+wedding+planner/data=!4m2!3m1!1s0x0:0x9fe42a5b79a38f30?sa=X&ved=1t:2428&hl=en-IN&ictx=111"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block text-[11px] font-bold text-[#E5C8A7] hover:underline mt-0.5"
-                  >
-                    View on Google Maps →
-                  </a>
+            <div className="mt-6 flex flex-col gap-3 text-xs text-white/80">
+              {/* Main Branch - Bengaluru */}
+              <div className="rounded-xl border border-white/15 bg-white/5 p-3 space-y-1">
+                <div className="flex items-center gap-1.5 text-[#E5C8A7] font-bold text-[11px] uppercase tracking-wider">
+                  <Star size={12} fill="currentColor" />
+                  <span>⭐ Main Branch (Bengaluru)</span>
+                </div>
+                <div className="flex items-start gap-2 text-white/75 text-xs">
+                  <MapPin size={14} className="text-[#E5C8A7] shrink-0 mt-0.5" />
+                  <div>
+                    <span>Building no 701, 1st Cross Rd, Basavanagar, Marathahalli, Bengaluru, Karnataka 560037</span>
+                    <a
+                      href="https://www.google.com/maps/place/Featurebright+south+wedding+planner/@12.9621418,77.6671931,17z/data=!3m1!4b1!4m16!1m9!4m8!1m0!1m6!1m2!1s0x3bae13f8dd6ca405:0x96343368215ec2e7!2sFeaturebright+south+wedding+planner,+Building+no+701,+1st+Cross+Rd,+Basavanagar,+Marathahalli,+Bengaluru,+Karnataka+560037!2m2!1d77.672064!2d12.9621366!3m5!1s0x3bae13f8dd6ca405:0x96343368215ec2e7!8m2!3d12.9621366!4d77.672064!16s%2Fg%2F11zxwz687v"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block text-[11px] font-bold text-[#E5C8A7] hover:underline mt-1"
+                    >
+                      View Main Branch on Google Maps →
+                    </a>
+                  </div>
                 </div>
               </div>
-              <p className="flex items-center gap-2">
+
+              {/* Surat Regional Studio */}
+              <div className="rounded-xl border border-white/10 bg-white/5 p-3 space-y-1">
+                <div className="flex items-center gap-1.5 text-white/90 font-bold text-[11px] uppercase tracking-wider">
+                  <MapPin size={12} className="text-[#E5C8A7]" />
+                  <span>Surat Studio Branch</span>
+                </div>
+                <div className="flex items-start gap-2 text-white/75 text-xs">
+                  <MapPin size={14} className="text-[#E5C8A7] shrink-0 mt-0.5" />
+                  <div>
+                    <span>Block no. C, Ratna Madhav, Shop no. 3 near Diamond Jalaram Temple, Vesu, Surat, Gujarat 395007</span>
+                    <a
+                      href="https://www.google.com/maps/place/Feature+Brights+south+wedding+planner/data=!4m2!3m1!1s0x0:0x9fe42a5b79a38f30?sa=X&ved=1t:2428&hl=en-IN&ictx=111"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block text-[11px] font-bold text-[#E5C8A7] hover:underline mt-1"
+                    >
+                      View Surat Studio on Google Maps →
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              {/* Direct Phone & Email */}
+              <p className="flex items-center gap-2 pt-1">
                 <Phone size={15} className="text-[#E5C8A7] shrink-0" />
                 <a href="tel:+919773269662" className="hover:text-white font-semibold">
                   +91-977-326-9662

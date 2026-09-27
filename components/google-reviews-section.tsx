@@ -4,6 +4,7 @@ import { useState } from "react"
 import {
   Clock,
   ExternalLink,
+  Layers,
   MapPin,
   MessageSquarePlus,
   Navigation,
@@ -12,10 +13,13 @@ import {
   Sparkles,
   Star,
 } from "lucide-react"
-import { googlePlaceInfo, realReviews } from "@/data/reviews"
+import { branchLocations, googlePlaceInfo, realReviews } from "@/data/reviews"
 
 export function GoogleReviewsSection() {
   const [filter, setFilter] = useState<"all" | "wedding" | "decor" | "corporate">("all")
+  const [activeBranchKey, setActiveBranchKey] = useState<"both" | "main" | "surat">("both")
+  const mainBranch = branchLocations.main
+  const suratBranch = branchLocations.surat
 
   const filteredReviews =
     filter === "all" ? realReviews : realReviews.filter((r) => r.category === filter)
@@ -33,7 +37,7 @@ export function GoogleReviewsSection() {
             What Clients Say on Google
           </h2>
           <p className="mt-3 text-sm sm:text-base leading-relaxed text-[#765F4C]">
-            Verified experiences from couples, families, and companies who entrusted their memorable events to Feature Brights south wedding planner.
+            Verified experiences from couples, families, and companies who entrusted their memorable events to Feature Brights south wedding planner across our Bengaluru Main Branch and Surat Studio.
           </p>
         </div>
 
@@ -65,13 +69,17 @@ export function GoogleReviewsSection() {
               </div>
 
               <div>
-                <div className="flex items-center gap-2">
+                <div className="flex flex-wrap items-center gap-2">
                   <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#4A3421]">
                     {googlePlaceInfo.name}
                   </h3>
+                  <span className="inline-flex items-center gap-1 rounded-full bg-amber-50 px-2.5 py-0.5 text-[11px] font-bold text-amber-800 border border-amber-200">
+                    <Star size={12} fill="currentColor" />
+                    ⭐ Main Branch: Bengaluru
+                  </span>
                   <span className="hidden sm:inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2.5 py-0.5 text-[11px] font-bold text-emerald-700 border border-emerald-200">
                     <ShieldCheck size={13} />
-                    Verified Place
+                    Verified Google Place
                   </span>
                 </div>
 
@@ -90,9 +98,13 @@ export function GoogleReviewsSection() {
                   </span>
                 </div>
 
-                <p className="mt-1 text-xs text-[#765F4C] flex items-center gap-1.5">
-                  <MapPin size={13} className="text-[#B08355] shrink-0" />
-                  <span>{googlePlaceInfo.shortLocation}</span>
+                <p className="mt-1 text-xs text-[#765F4C] flex flex-wrap items-center gap-x-2 gap-y-1">
+                  <span className="flex items-center gap-1 font-semibold text-[#4A3421]">
+                    <MapPin size={13} className="text-[#B08355] shrink-0" />
+                    ⭐ Main Branch: Basavanagar, Marathahalli, Bengaluru
+                  </span>
+                  <span className="text-[#B08355]">•</span>
+                  <span>Regional Studio: Vesu, Surat</span>
                 </p>
               </div>
             </div>
@@ -230,121 +242,306 @@ export function GoogleReviewsSection() {
         </div>
 
         {/* "This Place" Showcase / Studio Location Card */}
-        <div className="mt-14 overflow-hidden rounded-3xl border border-[#E5D8CB] bg-white shadow-md">
-          <div className="grid gap-0 lg:grid-cols-12">
-            {/* Place Details Column */}
-            <div className="p-8 sm:p-10 lg:col-span-5 flex flex-col justify-between bg-gradient-to-br from-white to-[#FDF8F3]">
+        <div className="mt-14 space-y-8">
+          {/* Header & Mode Switcher */}
+          <div className="overflow-hidden rounded-3xl border border-[#E5D8CB] bg-white p-6 sm:p-8 shadow-sm">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               <div>
                 <div className="inline-flex items-center gap-1.5 rounded-full bg-[#F6EDE4] px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-[#B08355]">
                   <MapPin size={13} />
-                  <span>Verified Google Place</span>
+                  <span>Verified Studio & Branch Locations</span>
                 </div>
-
-                <h3 className="mt-3 font-serif text-2xl sm:text-3xl font-bold text-[#4A3421]">
-                  Visit Our Studio Place
+                <h3 className="mt-2 font-serif text-2xl sm:text-3xl font-bold text-[#4A3421]">
+                  Visit Our Main Branch & Surat Studio
                 </h3>
-                <p className="mt-2 text-xs sm:text-sm leading-relaxed text-[#765F4C]">
-                  Meet our lead planners, explore physical decor portfolios, and discuss your event blueprint in person at our Surat studio.
+                <p className="mt-1 text-xs sm:text-sm text-[#765F4C]">
+                  Meet our lead planners, explore physical decor portfolios, and discuss your event blueprint in person at our Bengaluru Main Branch or Surat Studio.
                 </p>
-
-                {/* Address & Contact Cards */}
-                <div className="mt-6 space-y-3 text-xs sm:text-sm text-[#4A3421]">
-                  <div className="flex items-start gap-3 rounded-2xl bg-white p-3.5 border border-[#E5D8CB]">
-                    <span className="grid size-8 shrink-0 place-items-center rounded-xl bg-[#F6EDE4] text-[#B08355]">
-                      <MapPin size={16} />
-                    </span>
-                    <div>
-                      <p className="font-bold">Studio Address</p>
-                      <p className="text-xs text-[#765F4C] mt-0.5 leading-relaxed">
-                        {googlePlaceInfo.address}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-3 rounded-2xl bg-white p-3.5 border border-[#E5D8CB]">
-                    <span className="grid size-8 shrink-0 place-items-center rounded-xl bg-[#F6EDE4] text-[#B08355]">
-                      <Phone size={16} />
-                    </span>
-                    <div>
-                      <p className="font-bold">Direct Phone</p>
-                      <a
-                        href={`tel:${googlePlaceInfo.phone.replace(/[^0-9+]/g, "")}`}
-                        className="text-xs text-[#B08355] font-semibold hover:underline mt-0.5 block"
-                      >
-                        {googlePlaceInfo.phone}
-                      </a>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-3 rounded-2xl bg-white p-3.5 border border-[#E5D8CB]">
-                    <span className="grid size-8 shrink-0 place-items-center rounded-xl bg-[#F6EDE4] text-[#B08355]">
-                      <Clock size={16} />
-                    </span>
-                    <div>
-                      <p className="font-bold">Opening Hours</p>
-                      <p className="text-xs text-[#765F4C] mt-0.5">
-                        {googlePlaceInfo.hours}
-                      </p>
-                    </div>
-                  </div>
-                </div>
               </div>
 
-              {/* Navigation CTA */}
-              <div className="mt-8 flex flex-wrap gap-3">
-                <a
-                  href={googlePlaceInfo.googleMapsPlaceUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full bg-[#B08355] px-6 py-3 text-xs font-bold text-white shadow-sm hover:bg-[#966b40] transition"
+              {/* View Switcher */}
+              <div className="w-full sm:w-auto grid grid-cols-3 sm:flex sm:items-center gap-1 sm:gap-2 bg-[#F6EDE4]/80 p-1.5 rounded-2xl border border-[#E5D8CB] shrink-0">
+                <button
+                  type="button"
+                  onClick={() => setActiveBranchKey("both")}
+                  className={`flex items-center justify-center gap-1 sm:gap-1.5 px-2 sm:px-3.5 py-2 rounded-xl text-[11px] sm:text-xs font-bold transition-all cursor-pointer whitespace-nowrap ${
+                    activeBranchKey === "both"
+                      ? "bg-[#4A3421] text-white shadow-sm"
+                      : "text-[#4A3421] hover:bg-white/60"
+                  }`}
                 >
-                  <Navigation size={14} />
-                  <span>Get Directions to Place</span>
-                </a>
-                <a
-                  href={googlePlaceInfo.googleSearchReviewsUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full border border-[#E5D8CB] bg-white px-5 py-3 text-xs font-bold text-[#4A3421] hover:bg-[#F6EDE4] transition"
+                  <Layers size={13} className="shrink-0" />
+                  <span className="hidden sm:inline">Show Both Maps</span>
+                  <span className="sm:hidden">Both</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setActiveBranchKey("main")}
+                  className={`flex items-center justify-center gap-1 sm:gap-1.5 px-2 sm:px-3.5 py-2 rounded-xl text-[11px] sm:text-xs font-bold transition-all cursor-pointer whitespace-nowrap ${
+                    activeBranchKey === "main"
+                      ? "bg-[#B08355] text-white shadow-sm"
+                      : "text-[#4A3421] hover:bg-white/60"
+                  }`}
                 >
-                  <ExternalLink size={13} className="text-[#B08355]" />
-                  <span>Open in Google Maps</span>
-                </a>
-              </div>
-            </div>
-
-            {/* Google Map Iframe Column */}
-            <div className="relative min-h-[360px] lg:min-h-full lg:col-span-7 bg-[#E5D8CB]">
-              <iframe
-                title="Feature Brights south wedding planner Google Place Location"
-                src={googlePlaceInfo.mapEmbedUrl}
-                width="100%"
-                height="100%"
-                style={{ border: 0, minHeight: "380px" }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                className="w-full h-full"
-              />
-
-              {/* Floating Place Info Badge */}
-              <div className="absolute top-4 left-4 right-4 sm:right-auto sm:max-w-xs rounded-2xl bg-white/95 p-3.5 backdrop-blur shadow-lg border border-[#E5D8CB]">
-                <div className="flex items-center gap-2.5">
-                  <div className="grid size-8 place-items-center rounded-lg bg-[#B08355] text-white shrink-0">
-                    <MapPin size={16} />
-                  </div>
-                  <div>
-                    <p className="font-serif text-xs font-bold text-[#4A3421] leading-tight">
-                      Feature Brights
-                    </p>
-                    <p className="text-[10px] text-[#765F4C]">
-                      Ratna Madhav, Vesu, Surat
-                    </p>
-                  </div>
-                </div>
+                  <Star size={13} className="shrink-0" fill={activeBranchKey === "main" ? "currentColor" : "none"} />
+                  <span className="hidden sm:inline">⭐ Main Branch</span>
+                  <span className="sm:hidden">⭐ Main</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setActiveBranchKey("surat")}
+                  className={`flex items-center justify-center gap-1 sm:gap-1.5 px-2 sm:px-3.5 py-2 rounded-xl text-[11px] sm:text-xs font-bold transition-all cursor-pointer whitespace-nowrap ${
+                    activeBranchKey === "surat"
+                      ? "bg-[#B08355] text-white shadow-sm"
+                      : "text-[#4A3421] hover:bg-white/60"
+                  }`}
+                >
+                  <MapPin size={13} className="shrink-0" />
+                  <span className="hidden sm:inline">Surat Studio</span>
+                  <span className="sm:hidden">Surat</span>
+                </button>
               </div>
             </div>
           </div>
+
+          {/* DUAL MAPS DISPLAY (Both maps displayed directly) */}
+          {activeBranchKey === "both" && (
+            <div className="grid gap-8 lg:grid-cols-2">
+              {/* Main Branch (Bengaluru) */}
+              <div className="flex flex-col overflow-hidden rounded-3xl border-2 border-[#B08355] bg-white shadow-md">
+                <div className="border-b border-[#E5D8CB] bg-[#FDF8F3] p-6">
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="inline-flex items-center gap-1 rounded-full bg-amber-100 px-2.5 py-0.5 text-[10px] font-bold text-amber-900 border border-amber-300">
+                      <Star size={11} fill="currentColor" />
+                      ⭐ MAIN BRANCH (HQ)
+                    </span>
+                    <span className="text-[11px] font-bold text-[#B08355] uppercase tracking-wider">
+                      Bengaluru
+                    </span>
+                  </div>
+                  <h4 className="mt-2 font-serif text-xl font-bold text-[#4A3421]">
+                    {mainBranch.name}
+                  </h4>
+                  <p className="mt-2 text-xs text-[#765F4C] flex items-start gap-1.5 leading-relaxed">
+                    <MapPin size={14} className="text-[#B08355] shrink-0 mt-0.5" />
+                    <span>{mainBranch.address}</span>
+                  </p>
+                  <div className="mt-3 pt-2.5 border-t border-[#E5D8CB]/60 flex items-center justify-between text-xs text-[#765F4C]">
+                    <span>{mainBranch.hours}</span>
+                    <a href={`tel:${mainBranch.phone.replace(/[^0-9+]/g, "")}`} className="font-semibold text-[#B08355] hover:underline">
+                      {mainBranch.phone}
+                    </a>
+                  </div>
+                </div>
+
+                <div className="relative h-[340px] w-full bg-[#E5D8CB]">
+                  <iframe
+                    title="Featurebright south wedding planner Bengaluru Main Branch Google Map"
+                    src={mainBranch.mapEmbedUrl}
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    className="w-full h-full"
+                  />
+                </div>
+
+                <div className="p-4 bg-white border-t border-[#E5D8CB] flex items-center gap-3">
+                  <a
+                    href={mainBranch.googleMapsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 inline-flex items-center justify-center gap-2 rounded-xl bg-[#4A3421] py-2.5 px-4 text-xs font-bold text-white shadow-sm hover:bg-[#382618] transition"
+                  >
+                    <Navigation size={13} />
+                    <span>Get Directions (Main Branch)</span>
+                  </a>
+                  <a
+                    href={mainBranch.googleMapsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-1.5 rounded-xl border border-[#E5D8CB] bg-[#FDF8F3] py-2.5 px-4 text-xs font-bold text-[#4A3421] hover:bg-[#F6EDE4] transition"
+                  >
+                    <span>Open Map</span>
+                    <ExternalLink size={12} />
+                  </a>
+                </div>
+              </div>
+
+              {/* Surat Studio Branch */}
+              <div className="flex flex-col overflow-hidden rounded-3xl border border-[#E5D8CB] bg-white shadow-md">
+                <div className="border-b border-[#E5D8CB] bg-[#FDF8F3] p-6">
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="inline-flex items-center gap-1 rounded-full bg-[#F6EDE4] px-2.5 py-0.5 text-[10px] font-bold text-[#B08355] border border-[#E5D8CB]">
+                      <MapPin size={11} />
+                      REGIONAL STUDIO BRANCH
+                    </span>
+                    <span className="text-[11px] font-bold text-[#B08355] uppercase tracking-wider">
+                      Surat, Gujarat
+                    </span>
+                  </div>
+                  <h4 className="mt-2 font-serif text-xl font-bold text-[#4A3421]">
+                    {suratBranch.name}
+                  </h4>
+                  <p className="mt-2 text-xs text-[#765F4C] flex items-start gap-1.5 leading-relaxed">
+                    <MapPin size={14} className="text-[#B08355] shrink-0 mt-0.5" />
+                    <span>{suratBranch.address}</span>
+                  </p>
+                  <div className="mt-3 pt-2.5 border-t border-[#E5D8CB]/60 flex items-center justify-between text-xs text-[#765F4C]">
+                    <span>{suratBranch.hours}</span>
+                    <a href={`tel:${suratBranch.phone.replace(/[^0-9+]/g, "")}`} className="font-semibold text-[#B08355] hover:underline">
+                      {suratBranch.phone}
+                    </a>
+                  </div>
+                </div>
+
+                <div className="relative h-[340px] w-full bg-[#E5D8CB]">
+                  <iframe
+                    title="Feature Brights south wedding planner Surat Studio Google Map"
+                    src={suratBranch.mapEmbedUrl}
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    className="w-full h-full"
+                  />
+                </div>
+
+                <div className="p-4 bg-white border-t border-[#E5D8CB] flex items-center gap-3">
+                  <a
+                    href={suratBranch.googleMapsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 inline-flex items-center justify-center gap-2 rounded-xl bg-[#B08355] py-2.5 px-4 text-xs font-bold text-white shadow-sm hover:bg-[#966b40] transition"
+                  >
+                    <Navigation size={13} />
+                    <span>Get Directions (Surat Studio)</span>
+                  </a>
+                  <a
+                    href={suratBranch.googleMapsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-1.5 rounded-xl border border-[#E5D8CB] bg-[#FDF8F3] py-2.5 px-4 text-xs font-bold text-[#4A3421] hover:bg-[#F6EDE4] transition"
+                  >
+                    <span>Open Map</span>
+                    <ExternalLink size={12} />
+                  </a>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* SINGLE BRANCH FOCUSED VIEW */}
+          {activeBranchKey !== "both" && (
+            <div className="overflow-hidden rounded-3xl border border-[#E5D8CB] bg-white shadow-md">
+              {(() => {
+                const current = activeBranchKey === "main" ? mainBranch : suratBranch
+                return (
+                  <div className="grid gap-0 lg:grid-cols-12">
+                    <div className="p-8 sm:p-10 lg:col-span-5 flex flex-col justify-between bg-gradient-to-br from-white to-[#FDF8F3]">
+                      <div>
+                        <div className="flex flex-wrap items-center gap-2">
+                          <div
+                            className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-wider ${
+                              current.isMainBranch
+                                ? "bg-amber-100 text-amber-900 border border-amber-300"
+                                : "bg-[#F6EDE4] text-[#B08355] border border-[#E5D8CB]"
+                            }`}
+                          >
+                            {current.isMainBranch ? <Star size={13} fill="currentColor" /> : <MapPin size={13} />}
+                            <span>{current.branchTag}</span>
+                          </div>
+                        </div>
+
+                        <h3 className="mt-3 font-serif text-2xl sm:text-3xl font-bold text-[#4A3421]">
+                          {current.isMainBranch ? "Bengaluru Main Branch" : "Surat Studio Branch"}
+                        </h3>
+                        <p className="mt-2 text-xs sm:text-sm leading-relaxed text-[#765F4C]">
+                          {current.isMainBranch
+                            ? "Our primary flagship headquarters in Basavanagar, Marathahalli, Bengaluru. Meet our senior directors and spatial designers for full South Indian wedding curation and luxury events."
+                            : "Meet our lead planners, explore physical decor portfolios, and discuss your event blueprint in person at our Surat studio."}
+                        </p>
+
+                        <div className="mt-6 space-y-3 text-xs sm:text-sm text-[#4A3421]">
+                          <div className="flex items-start gap-3 rounded-2xl bg-white p-3.5 border border-[#E5D8CB]">
+                            <span className="grid size-8 shrink-0 place-items-center rounded-xl bg-[#F6EDE4] text-[#B08355]">
+                              <MapPin size={16} />
+                            </span>
+                            <div>
+                              <p className="font-bold">{current.isMainBranch ? "Main Branch Address" : "Studio Address"}</p>
+                              <p className="text-xs text-[#765F4C] mt-0.5 leading-relaxed">{current.address}</p>
+                            </div>
+                          </div>
+
+                          <div className="flex items-start gap-3 rounded-2xl bg-white p-3.5 border border-[#E5D8CB]">
+                            <span className="grid size-8 shrink-0 place-items-center rounded-xl bg-[#F6EDE4] text-[#B08355]">
+                              <Phone size={16} />
+                            </span>
+                            <div>
+                              <p className="font-bold">Direct Phone</p>
+                              <a href={`tel:${current.phone.replace(/[^0-9+]/g, "")}`} className="text-xs text-[#B08355] font-semibold hover:underline mt-0.5 block">
+                                {current.phone}
+                              </a>
+                            </div>
+                          </div>
+
+                          <div className="flex items-start gap-3 rounded-2xl bg-white p-3.5 border border-[#E5D8CB]">
+                            <span className="grid size-8 shrink-0 place-items-center rounded-xl bg-[#F6EDE4] text-[#B08355]">
+                              <Clock size={16} />
+                            </span>
+                            <div>
+                              <p className="font-bold">Opening Hours</p>
+                              <p className="text-xs text-[#765F4C] mt-0.5">{current.hours}</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="mt-8 flex flex-wrap gap-3">
+                        <a
+                          href={current.googleMapsUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 rounded-full bg-[#B08355] px-6 py-3 text-xs font-bold text-white shadow-sm hover:bg-[#966b40] transition"
+                        >
+                          <Navigation size={14} />
+                          <span>Get Directions</span>
+                        </a>
+                        <a
+                          href={current.googleMapsUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 rounded-full border border-[#E5D8CB] bg-white px-5 py-3 text-xs font-bold text-[#4A3421] hover:bg-[#F6EDE4] transition"
+                        >
+                          <ExternalLink size={13} className="text-[#B08355]" />
+                          <span>Open in Google Maps</span>
+                        </a>
+                      </div>
+                    </div>
+
+                    <div className="relative min-h-[380px] lg:min-h-full lg:col-span-7 bg-[#E5D8CB]">
+                      <iframe
+                        key={current.id}
+                        title={`${current.name} ${current.branchTag} Google Place Location`}
+                        src={current.mapEmbedUrl}
+                        width="100%"
+                        height="100%"
+                        style={{ border: 0, minHeight: "400px" }}
+                        allowFullScreen
+                        loading="lazy"
+                        referrerPolicy="no-referrer-when-downgrade"
+                        className="w-full h-full"
+                      />
+                    </div>
+                  </div>
+                )
+              })()}
+            </div>
+          )}
         </div>
       </div>
     </section>

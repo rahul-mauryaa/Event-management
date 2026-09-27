@@ -113,7 +113,7 @@ export async function sendContactEmail(data: ContactSubmission) {
             }
           </div>
           <div class="footer">
-            Sent securely from Feature Brights Website Contact Form • Vesu, Surat
+            Sent securely from Feature Brights Website Contact Form • Main Branch: Bengaluru • Studio: Surat
           </div>
         </div>
       </body>
@@ -133,6 +133,7 @@ Estimated Guests: ${data.guests || "Not specified"}
 Message / Vision:
 ${data.message || "None provided"}
 ------------------------------------
+Main Branch: Basavanagar, Marathahalli, Bengaluru | Studio: Vesu, Surat
 Sent from Feature Brights Website Contact Form
 `
 
@@ -158,7 +159,8 @@ Sent from Feature Brights Website Contact Form
             <p style="color: #555; line-height: 1.6;">Thank you for reaching out to <strong>Feature Brights south wedding planner</strong>. We have received your inquiry for <em>${data.service || "event planning"}</em>.</p>
             <p style="color: #555; line-height: 1.6;">Our senior event producer is reviewing your details and will connect with you via phone/WhatsApp within 24 hours.</p>
             <div style="margin: 20px 0; padding: 15px; background: #fdf8f3; border-radius: 8px; font-size: 13px; color: #4a3421;">
-              <strong>Studio Address:</strong> Block no. C, Ratna Madhav, Shop no. 3 near Diamond Jalaram Temple, Vesu, Surat, Gujarat 395007<br/>
+              <strong>Main Branch (HQ):</strong> Building no 701, 1st Cross Rd, Basavanagar, Marathahalli, Bengaluru, Karnataka 560037<br/>
+              <strong>Surat Studio Branch:</strong> Block no. C, Ratna Madhav, Shop no. 3 near Diamond Jalaram Temple, Vesu, Surat, Gujarat 395007<br/>
               <strong>Call / WhatsApp:</strong> +91-977-326-9662<br/>
               <strong>Email:</strong> featurebrights15@gmail.com
             </div>

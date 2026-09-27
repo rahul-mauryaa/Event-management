@@ -10,72 +10,85 @@ import {
   Phone,
   ShieldCheck,
   Sparkles,
+  Star,
 } from "lucide-react"
 import { ContactForm, Footer, Header, SectionHeading } from "@/components/site"
+import { ContactInteractiveMap } from "@/components/contact-interactive-map"
+import { branchLocations } from "@/data/reviews"
 
 export const metadata = {
-  title: "Contact Us & Studio Location | Feature Brights",
+  title: "Contact Us & Studio Locations | Feature Brights",
   description:
-    "Visit Feature Brights south wedding planner at Ratna Madhav, Vesu, Surat. View interactive Google Map and get in touch for custom event planning.",
+    "Connect with Featurebright south wedding planner. Visit our Main Branch in Basavanagar, Marathahalli, Bengaluru or our studio branch in Vesu, Surat. Interactive Google Maps, phone, and consultation booking.",
 }
 
-const GOOGLE_MAPS_LINK =
-  "https://www.google.com/maps/place/Feature+Brights+south+wedding+planner/data=!4m2!3m1!1s0x0:0x9fe42a5b79a38f30?sa=X&ved=1t:2428&hl=en-IN&ictx=111"
+const BENGALURU_MAIN_MAPS_LINK = branchLocations.main.googleMapsUrl
+const SURAT_STUDIO_MAPS_LINK = branchLocations.surat.googleMapsUrl
 
 const contactCards = [
   {
-    title: "Location",
+    title: "Main Branch (HQ)",
+    badge: "⭐ MAIN BRANCH",
+    icon: (
+      <svg className="size-6 text-[#B08355]" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z" />
+      </svg>
+    ),
+    lines: [
+      "Building no 701, 1st Cross Rd,",
+      "Basavanagar, Marathahalli,",
+      "Bengaluru, Karnataka 560037",
+    ],
+    action: {
+      label: "Open Main Branch in Maps",
+      href: BENGALURU_MAIN_MAPS_LINK,
+    },
+  },
+  {
+    title: "Surat Studio Branch",
+    badge: "REGIONAL STUDIO",
     icon: (
       <svg className="size-6 text-[#1A3A6B]" fill="currentColor" viewBox="0 0 24 24">
         <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z" />
       </svg>
     ),
     lines: [
-      "block no. C, Ratna Madhav,",
+      "Block no. C, Ratna Madhav,",
       "Shop no. 3 near diamond",
-      "jalaram temple, vesu,",
-      "Surat, Gujarat 395007",
+      "jalaram temple, Vesu, Surat",
     ],
     action: {
-      label: "Open in Maps",
-      href: GOOGLE_MAPS_LINK,
+      label: "Open Surat Studio in Maps",
+      href: SURAT_STUDIO_MAPS_LINK,
     },
   },
   {
-    title: "Contact",
+    title: "Direct Support & Calls",
+    badge: null,
     icon: (
       <svg className="size-6 text-[#1A3A6B]" fill="currentColor" viewBox="0 0 24 24">
         <path d="M6.62 10.79a15.053 15.053 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1.02l-2.2 2.2z" />
       </svg>
     ),
-    lines: ["+91-977-326-9662"],
+    lines: ["+91-977-326-9662", "Direct line for bookings & quotes"],
     action: {
       label: "Call Now",
       href: "tel:+919773269662",
     },
   },
   {
-    title: "Email",
+    title: "Email & Hours",
+    badge: null,
     icon: (
       <svg className="size-6 text-[#1A3A6B]" fill="currentColor" viewBox="0 0 24 24">
         <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
       </svg>
     ),
-    lines: ["featurebrights15@gmail.com"],
+    lines: ["featurebrights15@gmail.com", "Mon – Sat : 9.00 am-4.00 pm", "Sunday : Closed"],
     action: {
       label: "Send Email",
       href: "mailto:featurebrights15@gmail.com",
     },
-  },
-  {
-    title: "Visit Between",
-    icon: (
-      <svg className="size-6 text-[#1A3A6B]" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm-7-9a4 4 0 1 0 4 4 4 4 0 0 0-4-4zm.5 4.5l-2-.5v-2.5h1v1.8l1.4.3z" />
-      </svg>
-    ),
-    lines: ["Mon – Sat : 9.00 am-4.00 pm", "Sunday : Closed"],
-    action: null,
   },
 ]
 
@@ -89,19 +102,42 @@ export default function Contact() {
           <SectionHeading
             eyebrow="Get In Touch"
             title="Start Your Event Blueprint"
-            text="Have a target date in mind, or simply exploring creative possibilities? Connect with our senior production team for a personalized discovery consultation."
+            text="Have a target date in mind, or simply exploring creative possibilities? Connect with our senior production team at our Bengaluru Main Branch or Surat Studio for a personalized discovery consultation."
           />
 
-          {/* 4 Feature Contact Cards from User Specification */}
+          {/* 4 Feature Contact Cards highlighting Main Branch */}
           <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {contactCards.map((card, idx) => (
               <div
                 key={idx}
-                className="flex flex-col items-center justify-between rounded-3xl border border-[#E5D8CB] bg-white p-8 text-center shadow-xs transition hover:-translate-y-1.5 hover:shadow-md"
+                className={`flex flex-col items-center justify-between rounded-3xl border bg-white p-8 text-center shadow-xs transition hover:-translate-y-1.5 hover:shadow-md ${
+                  card.badge?.includes("MAIN")
+                    ? "border-[#B08355] ring-2 ring-[#B08355]/20"
+                    : "border-[#E5D8CB]"
+                }`}
               >
                 <div className="flex flex-col items-center w-full">
+                  {/* Badge if present */}
+                  {card.badge && (
+                    <span
+                      className={`inline-block rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-wider mb-4 ${
+                        card.badge.includes("MAIN")
+                          ? "bg-amber-100 text-amber-900 border border-amber-300"
+                          : "bg-[#F6EDE4] text-[#B08355] border border-[#E5D8CB]"
+                      }`}
+                    >
+                      {card.badge}
+                    </span>
+                  )}
+
                   {/* Round Icon Badge */}
-                  <div className="grid size-16 place-items-center rounded-full bg-[#EBF0F8] mb-6 shadow-2xs">
+                  <div
+                    className={`grid size-16 place-items-center rounded-full mb-5 shadow-2xs ${
+                      card.badge?.includes("MAIN")
+                        ? "bg-[#F6EDE4] text-[#B08355]"
+                        : "bg-[#EBF0F8]"
+                    }`}
+                  >
                     {card.icon}
                   </div>
 
@@ -191,28 +227,70 @@ export default function Contact() {
                 </div>
               </div>
 
-              {/* Studio Details Card */}
-              <div className="rounded-3xl border border-[#E5D8CB] bg-white p-8 shadow-xs space-y-4">
-                <div className="flex items-center justify-between gap-2">
-                  <h3 className="font-serif text-xl font-bold text-[#4A3421]">
-                    Surat Studio
+              {/* Studio & Branch Locations Card */}
+              <div className="rounded-3xl border border-[#E5D8CB] bg-white p-8 shadow-xs space-y-6">
+                <div>
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-[#B08355]">
+                    Our Studio Presence
+                  </span>
+                  <h3 className="font-serif text-xl font-bold text-[#4A3421] mt-1">
+                    Branch Offices & Studios
                   </h3>
-                  <a
-                    href={GOOGLE_MAPS_LINK}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-[11px] font-bold text-[#B08355] hover:underline"
-                  >
-                    <span>View on Maps</span>
-                    <ExternalLink size={12} />
-                  </a>
                 </div>
 
-                <div className="space-y-3 text-xs text-[#765F4C]">
-                  <p className="flex items-start gap-2">
-                    <MapPin size={16} className="shrink-0 text-[#B08355] mt-0.5" />
+                {/* Main Branch Box */}
+                <div className="rounded-2xl border-2 border-[#B08355] bg-[#FDF8F3] p-4.5 space-y-2">
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="inline-flex items-center gap-1 rounded-full bg-amber-100 px-2.5 py-0.5 text-[10px] font-bold text-amber-900 border border-amber-300">
+                      <Star size={11} fill="currentColor" />
+                      ⭐ MAIN BRANCH (HQ)
+                    </span>
+                    <a
+                      href={BENGALURU_MAIN_MAPS_LINK}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-[11px] font-bold text-[#B08355] hover:underline"
+                    >
+                      <span>View Map</span>
+                      <ExternalLink size={11} />
+                    </a>
+                  </div>
+                  <h4 className="font-serif text-base font-bold text-[#4A3421]">
+                    Bengaluru Main Branch
+                  </h4>
+                  <p className="flex items-start gap-2 text-xs text-[#765F4C]">
+                    <MapPin size={15} className="shrink-0 text-[#B08355] mt-0.5" />
+                    <span>Building no 701, 1st Cross Rd, Basavanagar, Marathahalli, Bengaluru, Karnataka 560037</span>
+                  </p>
+                </div>
+
+                {/* Surat Regional Studio Box */}
+                <div className="rounded-2xl border border-[#E5D8CB] bg-white p-4.5 space-y-2">
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="inline-flex items-center gap-1 rounded-full bg-[#F6EDE4] px-2.5 py-0.5 text-[10px] font-bold text-[#B08355] border border-[#E5D8CB]">
+                      REGIONAL STUDIO
+                    </span>
+                    <a
+                      href={SURAT_STUDIO_MAPS_LINK}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-[11px] font-bold text-[#B08355] hover:underline"
+                    >
+                      <span>View Map</span>
+                      <ExternalLink size={11} />
+                    </a>
+                  </div>
+                  <h4 className="font-serif text-base font-bold text-[#4A3421]">
+                    Surat Studio Branch
+                  </h4>
+                  <p className="flex items-start gap-2 text-xs text-[#765F4C]">
+                    <MapPin size={15} className="shrink-0 text-[#B08355] mt-0.5" />
                     <span>Block no. C, Ratna Madhav, Shop no. 3 near Diamond Jalaram Temple, Vesu, Surat, Gujarat 395007</span>
                   </p>
+                </div>
+
+                {/* Shared Contact Info */}
+                <div className="pt-2 border-t border-[#E5D8CB]/80 space-y-2.5 text-xs text-[#765F4C]">
                   <p className="flex items-center gap-2">
                     <Phone size={15} className="text-[#B08355]" />
                     <a href="tel:+919773269662" className="hover:text-[#4A3421] font-semibold">
@@ -249,74 +327,8 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* Interactive Google Map Section */}
-          <section className="mt-16 overflow-hidden rounded-3xl border border-[#E5D8CB] bg-white shadow-sm">
-            <div className="border-b border-[#E5D8CB] bg-[#FDF8F3] px-6 py-5 sm:px-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-              <div>
-                <span className="text-[11px] font-bold uppercase tracking-wider text-[#B08355]">
-                  Live Interactive Map
-                </span>
-                <h3 className="font-serif text-2xl font-bold text-[#4A3421]">
-                  Feature Brights south wedding planner
-                </h3>
-                <p className="text-xs text-[#765F4C] mt-0.5">
-                  Block no. C, Ratna Madhav, Shop no. 3 near Diamond Jalaram Temple, Vesu, Surat, Gujarat 395007
-                </p>
-              </div>
-
-              <div className="flex shrink-0 items-center gap-3">
-                <a
-                  href={GOOGLE_MAPS_LINK}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full bg-[#B08355] px-6 py-2.5 text-xs font-bold text-white shadow-sm hover:brightness-110 transition"
-                >
-                  <Navigation size={14} />
-                  <span>Get Directions</span>
-                </a>
-              </div>
-            </div>
-
-            {/* Google Map Iframe */}
-            <div className="relative h-[420px] w-full bg-[#E5D8CB]">
-              <iframe
-                title="Feature Brights south wedding planner Location Map"
-                src="https://maps.google.com/maps?q=Feature%20Brights%20south%20wedding%20planner,%20Ratna%20Madhav,%20Shop%20no.%203,%20Vesu,%20Surat&t=&z=16&ie=UTF8&iwloc=&output=embed"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                className="w-full h-full"
-              />
-
-              {/* Floating Quick Info Pill */}
-              <div className="absolute bottom-5 left-5 right-5 sm:right-auto sm:max-w-md rounded-2xl bg-white/95 p-4 backdrop-blur shadow-lg border border-[#E5D8CB]">
-                <div className="flex items-center gap-3">
-                  <span className="grid size-10 place-items-center rounded-xl bg-[#B08355] text-white shrink-0">
-                    <MapPin size={20} />
-                  </span>
-                  <div className="min-w-0 flex-1">
-                    <p className="font-serif text-sm font-bold text-[#4A3421] truncate">
-                      Feature Brights south wedding planner
-                    </p>
-                    <p className="text-[11px] text-[#765F4C] truncate">
-                      Vesu, Surat, Gujarat 395007
-                    </p>
-                  </div>
-                  <a
-                    href={GOOGLE_MAPS_LINK}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="shrink-0 text-xs font-bold text-[#B08355] hover:underline"
-                  >
-                    Open
-                  </a>
-                </div>
-              </div>
-            </div>
-          </section>
+          {/* Interactive Google Map Section with Branch Toggle */}
+          <ContactInteractiveMap />
         </div>
       </main>
       <Footer />
