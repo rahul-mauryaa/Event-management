@@ -113,10 +113,10 @@ export function BrandVideoSection() {
         <div className="relative mt-12 sm:mt-16">
           <div className="relative mx-auto max-w-5xl overflow-hidden rounded-3xl sm:rounded-[2rem] border border-[#B08355]/30 bg-[#1A110A] p-2 sm:p-3.5 shadow-[0_25px_60px_rgba(74,52,33,0.22)]">
             <div className="relative aspect-video w-full overflow-hidden rounded-2xl sm:rounded-[1.6rem] bg-black">
-              {/* HTML5 Video Element - Direct CDN Link, Muted by Default */}
+              {/* HTML5 Video Element - Local video home-video.mp4, Muted by Default */}
               <video
                 ref={videoRef}
-                src="https://featurebrights.com/wp-content/uploads/2025/04/Future-Brights-Events.mp4"
+                src="/home-video.mp4"
                 playsInline
                 preload="metadata"
                 muted={isMuted}
